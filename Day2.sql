@@ -12,17 +12,12 @@ Reg No: RA2311026010321
 
 LEVEL 1
 SCENARIO 1 : Movie Listing Dashboard
-
 */
-
 /* Q1. Retrieve all movie details */
-
 SELECT * FROM movie;
-
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /* Q2. Show only movie title, genre and rating */
 
@@ -32,7 +27,6 @@ SELECT title,genre, rating FROM movie;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q3. Display results with aliases */
 
 SELECT title AS Movie_Title,genre AS Genre, rating AS Rating FROM movie;
@@ -40,7 +34,6 @@ SELECT title AS Movie_Title,genre AS Genre, rating AS Rating FROM movie;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /*
 
@@ -57,7 +50,6 @@ SELECT * FROM screen;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q2. Display only screen name and capacity */
 
 SELECT name,capacity FROM screen;
@@ -66,7 +58,6 @@ SELECT name,capacity FROM screen;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q3. Retrieve screens with capacity greater than 150 */
 
 SELECT * FROM screen WHERE capacity > 150;
@@ -74,7 +65,6 @@ SELECT * FROM screen WHERE capacity > 150;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /*
 
@@ -91,7 +81,6 @@ SELECT name, email FROM user;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q2. Use aliases */
 
 SELECT name AS User_Name,email AS Email_Address FROM user;
@@ -100,7 +89,6 @@ SELECT name AS User_Name,email AS Email_Address FROM user;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q3. List users who have provided a phone number */
 
 SELECT * FROM user WHERE phone IS NOT NULL;
@@ -108,7 +96,6 @@ SELECT * FROM user WHERE phone IS NOT NULL;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /*
 
@@ -125,7 +112,6 @@ SELECT * FROM movie WHERE title LIKE 'A%';
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q2. Retrieve Action or Comedy movies */
 
 SELECT * FROM movie WHERE genre IN ('Action', 'Comedy');
@@ -134,7 +120,6 @@ SELECT * FROM movie WHERE genre IN ('Action', 'Comedy');
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q3. Retrieve movies with ratings between 7.5 and 9.0 */
 
 SELECT * FROM movie WHERE CAST(rating AS DECIMAL(3,1)) BETWEEN 7.5 AND 9.0;
@@ -142,7 +127,6 @@ SELECT * FROM movie WHERE CAST(rating AS DECIMAL(3,1)) BETWEEN 7.5 AND 9.0;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /*
 
@@ -159,7 +143,6 @@ SELECT * FROM membership WHERE current_points BETWEEN 100 AND 500;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q2. Users with zero points */
 
 SELECT * FROM membership WHERE current_points = 0;
@@ -168,7 +151,6 @@ SELECT * FROM membership WHERE current_points = 0;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q3. Members having points and valid email */
 
 SELECT u.name,u.email,m.current_points FROM user u JOIN membership m ON u.user_id = m.user_id WHERE m.current_points > 0 AND u.email IS NOT NULL;
@@ -176,7 +158,6 @@ SELECT u.name,u.email,m.current_points FROM user u JOIN membership m ON u.user_i
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /*
 
@@ -193,7 +174,6 @@ SELECT genre, COUNT(*) AS Number_Of_Movies FROM movie GROUP BY genre;
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q2. Find average rating for each genre */
 
 SELECT genre,AVG(CAST(rating AS DECIMAL(3,1))) AS Average_Rating FROM movie GROUP BY genre;
@@ -202,7 +182,6 @@ SELECT genre,AVG(CAST(rating AS DECIMAL(3,1))) AS Average_Rating FROM movie GROU
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q3. Display genres ordered by average rating */
 
 SELECT genre,AVG(CAST(rating AS DECIMAL(3,1))) AS Average_Rating FROM movie GROUP BY genre ORDER BY Average_Rating DESC;
@@ -210,7 +189,6 @@ SELECT genre,AVG(CAST(rating AS DECIMAL(3,1))) AS Average_Rating FROM movie GROU
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /*
 ============================================================
@@ -227,7 +205,6 @@ SELECT f.name,COUNT(*) AS Total_Orders FROM fooditem f JOIN foodorderitem fo ON 
 Sanjay Kumar S - RA2311026010321
 */
 
-
 /* Q2. Calculate total sales amount for each food item */
 
 SELECT f.name,SUM(fo.quantity * fo.price_at_time) AS Total_Sales FROM fooditem f JOIN foodorderitem fo ON f.item_id = fo.item_id GROUP BY f.item_id, f.name;
@@ -235,7 +212,6 @@ SELECT f.name,SUM(fo.quantity * fo.price_at_time) AS Total_Sales FROM fooditem f
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
 
 /* Q3. List food items in descending order of total sales */
 
