@@ -98,126 +98,66 @@ SELECT sc.screen_id,sc.name,s.show_id,s.show_datetime FROM screen sc LEFT JOIN `
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
-
 /*
 ============================================================
 Problem 4 : Right JOIN Example
 (Screens and Shows)
-
 Display all shows and their associated
 screens. Include shows even if screen
 information is missing.
 ============================================================
 */
-
-SELECT
-    sc.screen_id,
-    sc.name,
-    s.show_id,
-    s.show_datetime
-FROM screen sc
-RIGHT JOIN `show` s
-ON sc.screen_id = s.screen_id;
-
+SELECT sc.screen_id, sc.name,s.show_id,s.show_datetime FROM screen sc RIGHT JOIN `show` s ON sc.screen_id = s.screen_id;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
-
 /*
 ============================================================
 LEVEL 3 – FULL OUTER JOIN & CROSS JOIN
 ============================================================
 */
-
-
 /*
 ============================================================
 Problem 1 : All movies and all reviews
-
 Display all movies and reviews, including
 movies without reviews and reviews without
 movies (simulated FULL OUTER JOIN).
 ============================================================
 */
-
-SELECT
-    m.movie_id,
-    m.title,
-    r.review_id,
-    r.comment
+SELECT m.movie_id,m.title,r.review_id
 FROM movie m
 LEFT JOIN review r
 ON m.movie_id = r.movie_id
-
 UNION
-
-SELECT
-    m.movie_id,
-    m.title,
-    r.review_id,
-    r.comment
-FROM movie m
-RIGHT JOIN review r
-ON m.movie_id = r.movie_id;
-
+SELECT m.movie_id,m.title, r.review_id FROM movie m RIGHT JOIN review r ON m.movie_id = r.movie_id;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
-
 /*
 ============================================================
 Problem 2 : Users and bookings
 (FULL OUTER JOIN simulation)
-
 List all users and bookings, including users
 with no bookings and bookings with no user
 information.
 ============================================================
 */
-
-SELECT
-    u.user_id,
-    u.name,
-    b.booking_id,
-    b.booking_datetime
-FROM user u
-LEFT JOIN booking b
-ON u.user_id = b.user_id
-
+SELECT u.user_id, u.name, b.booking_id, b.booking_datetime 
+FROM user u LEFT JOIN booking b ON u.user_id = b.user_id
 UNION
-
-SELECT
-    u.user_id,
-    u.name,
-    b.booking_id,
-    b.booking_datetime
-FROM user u
-RIGHT JOIN booking b
-ON u.user_id = b.user_id;
-
+SELECT u.user_id, u.name, b.booking_id, b.booking_datetime 
+FROM user u RIGHT JOIN booking b ON u.user_id = b.user_id;
 /*
 Sanjay Kumar S - RA2311026010321
 */
-
-
 /*
 ============================================================
 Problem 3 : Generate all seat-show combinations
-
 Generate every possible seat-show combination
 for planning purposes.
 ============================================================
 */
-
-SELECT
-    st.seat_id,
-    sh.show_id
-FROM seat st
-CROSS JOIN `show` sh;
-
+SELECT st.seat_id, sh.show_id FROM seat st CROSS JOIN `show` sh;
 /*
 Sanjay Kumar S - RA2311026010321
 */
