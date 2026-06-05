@@ -33,7 +33,7 @@ Sanjay Kumar S - RA2311026010321
 M8 : Find the Most Popular Showtimes
 ============================================================
 */
-
+select * from booking;
 SELECT
     s.show_datetime,
     COUNT(*) AS booking_count
