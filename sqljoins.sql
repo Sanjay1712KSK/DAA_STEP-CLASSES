@@ -1,24 +1,19 @@
 /*
 ============================================================
 SQL JOIN – MULTI-LEVEL LAB
-
 Name : Sanjay Kumar S
 Reg No: RA2311026010321
 ============================================================
 */
-
 use unox2;
 /*
 ============================================================
 LEVEL 1 – Introduction to Joins & INNER JOIN
 ============================================================
 */
-
-
 /*
 ============================================================
 Problem 1 : List movies and their shows
-
 The manager wants a list of all movies
 along with their scheduled show times.
 ============================================================
@@ -35,17 +30,11 @@ Sanjay Kumar S - RA2311026010321
 /*
 ============================================================
 Problem 2 : List users and their bookings
-
 Find all users who have made at least one
 booking, along with booking date.
 ============================================================
 */
-SELECT
-    u.name,
-    b.booking_datetime
-FROM user u
-INNER JOIN booking b
-ON u.user_id = b.user_id;
+SELECT u.name,b.booking_datetime FROM user u INNER JOIN booking b ON u.user_id = b.user_id;
 /*
 Sanjay Kumar S - RA2311026010321
 */
@@ -71,7 +60,7 @@ Problem 1 : List all movies and any reviews
 Show all movies, even those without reviews.
 ============================================================
 */
-SELECT m.title, r.review_id, r.comments FROM movie m LEFT JOIN review r ON m.movie_id = r.movie_id;
+SELECT m.title, r.review_id FROM movie m LEFT JOIN review r ON m.movie_id = r.movie_id;
 /*
 Sanjay Kumar S - RA2311026010321
 */
@@ -125,9 +114,7 @@ movies (simulated FULL OUTER JOIN).
 ============================================================
 */
 SELECT m.movie_id,m.title,r.review_id
-FROM movie m
-LEFT JOIN review r
-ON m.movie_id = r.movie_id
+FROM movie m LEFT JOIN review r ON m.movie_id = r.movie_id
 UNION
 SELECT m.movie_id,m.title, r.review_id FROM movie m RIGHT JOIN review r ON m.movie_id = r.movie_id;
 /*
