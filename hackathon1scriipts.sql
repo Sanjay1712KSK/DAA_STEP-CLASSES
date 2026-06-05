@@ -36,4 +36,14 @@ select * from membership;
 select u.user_id,u.name,m.current_points from unox_hackathon.user u 
 JOIN membership m on u.user_id=m.user_id where m.current_points >800
 order by m.current_points DESC;
--- M12. 
+-- M12. Analyze Revenue Contribution by Each Screen - prepare
+select * from screen;
+select * from payment;
+select * from booking;
+select * from unox_hackathon.show;
+-- M12. Analyze Revenue Contribution by Each Screen
+select sc.screen_id,sc.name as Screen_Name, SUM(p.transaction_amount) as Revenue_Total from screen sc
+JOIN unox_hackathon.show s on sc.screen_id=s.screen_id
+JOIN booking b on s.show_id=b.show_id 
+JOIN payment p ON b.booking_id = p.booking_id WHERE p.status='Success'
+GROUP BY sc.screen_id,sc.name ORDER BY Revenue_Total DESC;
