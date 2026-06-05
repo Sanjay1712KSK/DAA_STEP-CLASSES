@@ -15,3 +15,11 @@ select * from unox_hackathon.show;
 select s.show_id,s.show_datetime,COUNT(b.booking_id) as total_booking from unox_hackathon.show s
 JOIN booking b on s.show_id=b.show_id
 group by s.show_datetime,s.show_id order by total_booking DESC;
+-- M9. Calculate the Average Spending Per Customer
+select * from booking;
+select * from payment;
+select * from unox_hackathon.user;
+select u.user_id,u.name,AVG(p.transaction_amount) as average_amount_spent from unox_hackathon.user u
+JOIN booking b on b.user_id=u.user_id
+JOIN payment p on p.booking_id=b.booking_id where p.status='Success' 
+group by u.user_id,u.name order by average_amount_spent DESC;
