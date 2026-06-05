@@ -23,3 +23,12 @@ select u.user_id,u.name,AVG(p.transaction_amount) as average_amount_spent from u
 JOIN booking b on b.user_id=u.user_id
 JOIN payment p on p.booking_id=b.booking_id where p.status='Success' 
 group by u.user_id,u.name order by average_amount_spent DESC;
+-- M10. Find the Most Popular Food Items Ordered
+select * from fooditem;
+select * from fooditemsize;
+select * from foodorder;
+select * from foodorderitem;
+select fi.item_id,fi.name,SUM(foi.quantity) as total_ordered_quantity from fooditem fi
+JOIN foodorderitem foi on fi.item_id=foi.item_id
+group by fi.item_id,fi.name order by total_ordered_quantity;
+-- M11. Identify Customers Who Have Earned More Than 800 Loyalty Points 
