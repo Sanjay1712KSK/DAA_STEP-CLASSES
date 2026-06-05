@@ -32,3 +32,8 @@ select fi.item_id,fi.name,SUM(foi.quantity) as total_ordered_quantity from foodi
 JOIN foodorderitem foi on fi.item_id=foi.item_id
 group by fi.item_id,fi.name order by total_ordered_quantity;
 -- M11. Identify Customers Who Have Earned More Than 800 Loyalty Points 
+select * from membership;
+select u.user_id,u.name,m.current_points from unox_hackathon.user u 
+JOIN membership m on u.user_id=m.user_id where m.current_points >800
+order by m.current_points DESC;
+-- M12. 
