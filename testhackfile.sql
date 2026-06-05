@@ -17,11 +17,11 @@ ORDER BY total_spending DESC;
 -- 8. Find the Most Popular Showtimes
 SELECT
     s.show_datetime,
-    COUNT(b.booking_id) AS booking_count
-FROM booking b
-JOIN `show` s ON b.show_id = s.show_id
+    COUNT(b.booking_id) AS total_bookings
+FROM `show` s
+JOIN booking b ON s.show_id = b.show_id
 GROUP BY s.show_datetime
-ORDER BY booking_count DESC;
+ORDER BY total_bookings DESC;
 
 
 -- 9. Calculate the Average Spending Per Customer
@@ -48,89 +48,99 @@ GROUP BY fi.item_id, fi.name
 ORDER BY total_quantity_ordered DESC;
 
 
--- 11. Identify Customers with the Highest Spending on Food Items
+-- 11. Identify Customers Who Have Earned More Than 800 Loyalty Points
 SELECT
     u.user_id,
     u.name,
-    SUM(foi.quantity * foi.price_at_time) AS total_food_spending
+    m.current_points
 FROM `user` u
-JOIN booking b ON u.user_id = b.user_id
-JOIN foodorder fo ON b.booking_id = fo.booking_id
-JOIN foodorderitem foi ON fo.order_id = foi.order_id
-GROUP BY u.user_id, u.name
-ORDER BY total_food_spending DESC;
+JOIN membership m ON u.user_id = m.user_id
+WHERE m.current_points > 800
+ORDER BY m.current_points DESC;
 
 
--- 12. Determine the Most Frequent Moviegoers
+-- 12. Analyze Revenue Contribution by Each Screen
 SELECT
-    u.user_id,
-    u.name,
-    COUNT(b.booking_id) AS total_bookings
-FROM `user` u
-JOIN booking b ON u.user_id = b.user_id
-GROUP BY u.user_id, u.name
-ORDER BY total_bookings DESC;
-
-
--- 13. Find the Most Active Booking Hours
-SELECT
-    COUNT(booking_id) AS total_bookings
-FROM booking
-GROUP BY HOUR(booking_datetime)
-ORDER BY total_bookings DESC;
-
-
--- 14. Identify the Customers Who Book the Most Tickets
-SELECT
-    u.user_id,
-    u.name,
-    COUNT(t.ticket_id) AS total_tickets
-FROM `user` u
-JOIN booking b ON u.user_id = b.user_id
-JOIN ticket t ON b.booking_id = t.booking_id
-GROUP BY u.user_id, u.name
-ORDER BY total_tickets DESC;
-
-
--- 15. Get the Most Popular Movie Genres by Ticket Sales
-SELECT
-    m.genre,
-    COUNT(t.ticket_id) AS total_tickets_sold
-FROM movie m
-JOIN `show` s ON m.movie_id = s.movie_id
+    sc.screen_id,
+    sc.name AS screen_name,
+    SUM(p.transaction_amount) AS total_revenue
+FROM screen sc
+JOIN `show` s ON sc.screen_id = s.screen_id
 JOIN booking b ON s.show_id = b.show_id
-JOIN ticket t ON b.booking_id = t.booking_id
-GROUP BY m.genre
-ORDER BY total_tickets_sold DESC;
+JOIN payment p ON b.booking_id = p.booking_id
+WHERE p.status = 'Success'
+GROUP BY sc.screen_id, sc.name
+ORDER BY total_revenue DESC;
 
 
--- 16. Identify the Peak Hours for Food Orders
-SELECT
-    HOUR(order_datetime) AS food_order_hour,
-    COUNT(order_id) AS total_food_orders
-FROM foodorder
-GROUP BY HOUR(order_datetime)
-ORDER BY total_food_orders DESC;
-
-
--- 17. Find the Least Popular Movies
+-- 13. Calculate Total Revenue by Movie and Time Slot
 SELECT
     m.movie_id,
     m.title,
-    COUNT(b.booking_id) AS total_bookings
+    HOUR(s.show_datetime) AS time_slot,
+    SUM(p.transaction_amount) AS total_revenue
 FROM movie m
-LEFT JOIN `show` s ON m.movie_id = s.movie_id
-LEFT JOIN booking b ON s.show_id = b.show_id
-GROUP BY m.movie_id, m.title
-ORDER BY total_bookings ASC;
-
-
--- 18. Get the Most Profitable Days for Ticket Sales
-SELECT
-    DATE(b.booking_datetime) AS booking_date,
-    SUM(p.transaction_amount) AS total_ticket_sales
-FROM booking b
+JOIN `show` s ON m.movie_id = s.movie_id
+JOIN booking b ON s.show_id = b.show_id
 JOIN payment p ON b.booking_id = p.booking_id
 WHERE p.status = 'Success'
-GROUP BY DATE(b.booking_datetime)
-ORDER BY total_ticket_sales DESC;
+GROUP BY m.movie_id, m.title, HOUR(s.show_datetime)
+ORDER BY total_revenue DESC;
+
+
+-- 14. Identify Users Who Have Booked the Most Shows
+SELECT
+    u.user_id,
+    u.name,
+    COUNT(DISTINCT b.show_id) AS total_shows_booked
+FROM `user` u
+JOIN booking b ON u.user_id = b.user_id
+GROUP BY u.user_id, u.name
+ORDER BY total_shows_booked DESC;
+
+
+-- 15. Find the Most Profitable Food Items and Their Sales
+SELECT
+    fi.item_id,
+    fi.name,
+    SUM(foi.quantity) AS total_quantity_sold,
+    SUM(foi.quantity * foi.price_at_time) AS total_sales
+FROM fooditem fi
+JOIN foodorderitem foi ON fi.item_id = foi.item_id
+GROUP BY fi.item_id, fi.name
+ORDER BY total_sales DESC;
+
+
+-- 16. Calculate Total Points Earned by Users in a Given Period
+SELECT
+    u.user_id,
+    u.name,
+    SUM(pt.points_earned) AS total_points_earned
+FROM `user` u
+JOIN pointstransaction pt ON u.user_id = pt.user_id
+WHERE pt.transaction_datetime BETWEEN '2025-02-01' AND '2025-03-31'
+GROUP BY u.user_id, u.name
+ORDER BY total_points_earned DESC;
+
+
+-- 17. Identify Users Who Haven’t Made a Booking
+SELECT
+    u.user_id,
+    u.name,
+    u.email,
+    u.phone
+FROM `user` u
+LEFT JOIN booking b ON u.user_id = b.user_id
+WHERE b.booking_id IS NULL;
+
+
+-- 18. List Users with Membership and Their Current Points
+SELECT
+    u.user_id,
+    u.name,
+    u.email,
+    m.membership_id,
+    m.current_points
+FROM `user` u
+JOIN membership m ON u.user_id = m.user_id
+ORDER BY m.current_points DESC;

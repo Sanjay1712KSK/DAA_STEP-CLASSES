@@ -12,3 +12,6 @@ group by u.user_id,u.name order by total_spent DESC;
 -- M8. Find the most popular show times
 select * from booking;
 select * from unox_hackathon.show;
+select s.show_id,s.show_datetime,COUNT(b.booking_id) as total_booking from unox_hackathon.show s
+JOIN booking b on s.show_id=b.show_id
+group by s.show_datetime,s.show_id order by total_booking DESC;
