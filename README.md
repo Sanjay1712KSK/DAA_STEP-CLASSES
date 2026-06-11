@@ -1,4 +1,4 @@
-# 📊 DAA - DATA ANALYTICS AND ANALYSIS (MySQL)
+# 📊 DAA - DATA ANALYTICS AND ANALYSIS (MySQL | Knime | Excel)
 ## STEP Classes - Database & SQL Practice Repository
 
 > **Beginner to Advanced SQL Learning Journey** | *Data Analytics & Database Design*
