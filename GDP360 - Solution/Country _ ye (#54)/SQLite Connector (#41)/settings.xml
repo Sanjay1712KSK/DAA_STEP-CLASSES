@@ -920,16 +920,20 @@
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="CONFIGURED"/>
+    <config key="nodecontainer_message">
+        <entry key="type" type="xstring" value="ERROR"/>
+        <entry key="message" type="xstring" value="Execute failed: path to 'C:\Users\gazal\Downloads\gdp360.db': 'C:\Users\gazal' does not exist"/>
+    </config>
     <entry key="factory" type="xstring" value="org.knime.database.extension.sqlite.node.connector.SQLiteDBConnectorNodeFactory"/>
     <entry key="node-name" type="xstring" value="SQLite Connector"/>
     <entry key="node-bundle-name" type="xstring" value="KNIME database extensions"/>
     <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.database.extensions"/>
     <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
-    <entry key="node-bundle-version" type="xstring" value="5.8.0.v202510021204"/>
+    <entry key="node-bundle-version" type="xstring" value="5.11.0.v202602211512"/>
     <entry key="node-feature-name" type="xstring" value="KNIME Database"/>
     <entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.database.feature.group"/>
     <entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
-    <entry key="node-feature-version" type="xstring" value="5.8.0.v202510021204"/>
+    <entry key="node-feature-version" type="xstring" value="5.11.0.v202602211512"/>
     <config key="factory_settings"/>
     <entry key="name" type="xstring" value="SQLite Connector"/>
     <entry key="hasContent" type="xboolean" value="false"/>
