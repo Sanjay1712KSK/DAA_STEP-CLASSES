@@ -8,19 +8,10 @@
         <entry key="authored-by" type="xstring" value="adhik"/>
         <entry key="authored-when" type="xstring" value="2025-10-30 16:09:14 +0530"/>
         <entry key="lastEdited-by" type="xstring" value="sanja"/>
-        <entry key="lastEdited-when" type="xstring" value="2026-06-11 11:08:20 +0530"/>
+        <entry key="lastEdited-when" type="xstring" value="2026-06-11 11:45:24 +0530"/>
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="IDLE"/>
-    <config key="nodecontainer_message">
-        <entry key="type" type="xstring" value="ERROR"/>
-        <entry key="message" type="xstring" value="Contains an unconnected node (&quot;Joiner #94&quot;)"/>
-        <config key="resolutions">
-            <entry key="array-size" type="xint" value="2"/>
-            <entry key="0" type="xstring" value="Properly connect the node(s)."/>
-            <entry key="1" type="xstring" value="Delete unconnected node(s) from inner workflow."/>
-        </config>
-    </config>
     <config key="workflow_credentials"/>
     <config key="annotations">
         <config key="annotation_0">
@@ -87,10 +78,10 @@
             <entry key="text" type="xstring" value="&lt;h2&gt;Data Export &amp;amp; Visualization&lt;/h2&gt;&lt;p&gt;&lt;/p&gt;"/>
             <entry key="contentType" type="xstring" value="text/html"/>
             <entry key="bgcolor" type="xint" value="16777215"/>
-            <entry key="x-coordinate" type="xint" value="2080"/>
-            <entry key="y-coordinate" type="xint" value="-215"/>
-            <entry key="width" type="xint" value="595"/>
-            <entry key="height" type="xint" value="1410"/>
+            <entry key="x-coordinate" type="xint" value="2095"/>
+            <entry key="y-coordinate" type="xint" value="-210"/>
+            <entry key="width" type="xint" value="1175"/>
+            <entry key="height" type="xint" value="1400"/>
             <entry key="alignment" type="xstring" value="LEFT"/>
             <entry key="borderSize" type="xint" value="10"/>
             <entry key="borderColor" type="xint" value="16730955"/>

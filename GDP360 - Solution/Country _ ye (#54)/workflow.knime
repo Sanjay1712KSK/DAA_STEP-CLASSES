@@ -12,16 +12,11 @@
     </config>
     <entry key="customDescription" type="xstring" isnull="true" value=""/>
     <entry key="state" type="xstring" value="IDLE"/>
-    <config key="nodecontainer_message">
-        <entry key="type" type="xstring" value="ERROR"/>
-        <entry key="message" type="xstring" value="Contains one node with execution failure (SQLite Connector #41)"/>
-        <entry key="issue" type="xstring" value="SQLite Connector #41: path to 'C:\Users\gazal\Downloads\gdp360.db': 'C:\Users\gazal' does not exist"/>
-    </config>
     <config key="workflow_credentials"/>
     <config key="nodes">
         <config key="node_41">
             <entry key="id" type="xint" value="41"/>
-            <entry key="node_settings_file" type="xstring" value="SQLite Connector (#41)/settings.xml"/>
+            <entry key="node_settings_file" type="xstring" value="MySQL Connector (#41)/settings.xml"/>
             <entry key="node_is_meta" type="xboolean" value="false"/>
             <entry key="node_type" type="xstring" value="NativeNode"/>
             <entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
